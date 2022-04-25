@@ -72,12 +72,13 @@ func getAllUsers(w http.ResponseWriter, r *http.Request) {
 		id    int
 		name  string
 		email string
+		user  User
 		users []User
 	)
 	for rows.Next() {
 		err := rows.Scan(&id, &name, &email)
 		checkError(err)
-		user := User{UserId: id, Name: name, Email: email}
+		user = User{UserId: id, Name: name, Email: email}
 		users = append(users, user)
 	}
 	if len(users) == 0 {
